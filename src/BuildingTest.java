@@ -28,7 +28,6 @@ public class BuildingTest {
 			int[] rm = { -1, -1, 0, 1, 1, 1, 0, -1 }; // 행
 			int[] cm = { 0, -1, -1, -1, 0, 1, 1, 1 }; // 열
 			int count = 0;
-			int b_count = 0;
 			int max = 0;
 
 			for (int i = 0; i < map.length; i++) {
@@ -39,22 +38,20 @@ public class BuildingTest {
 
 						// 주변 8칸 확인 해보기
 						for (int a = 0; a < 8; a++) {
-							int r = i + rm[a];
-							int c = j + cm[a];
+							int r = i + rm[a]; // 주변 8칸 row
+							int c = j + cm[a]; // 두변 8칸 columns
 
 							// 인덱스 값을 넘어가지 않는 선에서
-							if (r > 0 && r < map.length && c > 0 && c < map.length) {
+							if (r >= 0 && r < map.length && c >= 0 && c < map.length) {
 								// 8칸 중 하나라도 'G'일 시 2층 건물 확정
 								if (map[r][c] == 'G') {
 									count = 2;
 									break;
-								} else {
-									b_count++;
 								}
 							}
 						}
 						// 모두 'B'일 시 가로 세로 'B' 개수 구하기
-						if (b_count == 8) {
+						if (count != 2) {
 							for (int x = 0; x < N; x++) {
 								if (map[i][x] == 'B') {
 									count++;
@@ -72,7 +69,7 @@ public class BuildingTest {
 					}
 				}
 			}
-			System.out.println("#" + T + max);
+			System.out.println("#" + testcase + " " + max);
 		}
 	}
 }
