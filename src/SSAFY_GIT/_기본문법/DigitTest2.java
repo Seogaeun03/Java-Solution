@@ -1,3 +1,5 @@
+package SSAFY_GIT._기본문법
+
 import java.util.Scanner;
 
 public class DigitTest2 {
